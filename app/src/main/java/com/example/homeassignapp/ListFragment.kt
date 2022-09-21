@@ -1,23 +1,26 @@
-package com.example.homeassignapp.detailsFragment
+package com.example.homeassignapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.homeassignapp.databinding.FragmentDetailsBinding
+import androidx.fragment.app.activityViewModels
+import com.example.homeassignapp.databinding.FragmentListBinding
 
-class DetailsFragment : Fragment() {
+class ListFragment : Fragment() {
 
-    private var _binding: FragmentDetailsBinding? = null
+    private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+
+    private val svm: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentListBinding.inflate(inflater, container, false)
         val view = binding.root
 
 
