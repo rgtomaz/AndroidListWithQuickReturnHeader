@@ -23,6 +23,7 @@ class ListFragment : Fragment() {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        svm.initSvm() // temp implementation to force ViewModel initialization.
 
         return view
     }
