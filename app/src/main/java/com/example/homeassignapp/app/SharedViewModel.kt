@@ -1,4 +1,4 @@
-package com.example.homeassignapp
+package com.example.homeassignapp.app
 
 import androidx.lifecycle.ViewModel
 
