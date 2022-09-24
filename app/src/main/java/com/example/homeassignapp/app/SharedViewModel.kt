@@ -21,10 +21,10 @@ class SharedViewModel : ViewModel() {
             val response = try {
                 RetrofitInstance.photoData.getData()
             } catch (e: IOException) {
-                Log.e(TAG, "IOException, internet connection may not be available.")
+                Log.e(TAG, "IOException, internet connection may not be available.", e)
                 return@launch
             } catch (e: HttpException) {
-                Log.e(TAG, "HttpException, unexpected response.")
+                Log.e(TAG, "HttpException, unexpected response.", e)
                 return@launch
             }
 
