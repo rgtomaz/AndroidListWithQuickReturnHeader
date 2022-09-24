@@ -1,8 +1,9 @@
 package com.example.homeassignapp.app
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.homeassignapp.retrofit.Photo
+import com.example.homeassignapp.retrofit.PhotoData
 import com.example.homeassignapp.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -12,11 +13,17 @@ private const val TAG = "svm"
 
 class SharedViewModel : ViewModel() {
 
-    init {
-        getPhotoData()
+    private val _photoData = MutableLiveData<PhotoData?>(null)
+
+    val photoList: LiveData<List<Photo>?> = Transformations.map(_photoData) { data ->
+        data?.photos?.photo
     }
 
-    private fun getPhotoData() {
+    init {
+        initPhotoData()
+    }
+
+    private fun initPhotoData() {
         viewModelScope.launch {
             val response = try {
                 RetrofitInstance.photoData.getData()
@@ -30,9 +37,8 @@ class SharedViewModel : ViewModel() {
 
             if (response.isSuccessful) response.body()?.let {
                 Log.d(TAG, response.body().toString())
+                _photoData.value = response.body()
             }
         }
     }
-
-    fun initSvm() {}
 }

@@ -23,7 +23,11 @@ class ListFragment : Fragment() {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        svm.initSvm() // temp implementation to force ViewModel initialization.
+        svm.photoList.observe(viewLifecycleOwner) { list ->
+            list?.get(0).let { photo ->
+                // binding.imgViewTest.load(photo.getPhotoURL())
+            }
+        }
 
         return view
     }
