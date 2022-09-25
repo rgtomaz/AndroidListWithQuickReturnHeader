@@ -2,7 +2,7 @@ package com.example.homeassignapp.app
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.homeassignapp.retrofit.Photo
+import com.example.homeassignapp.retrofit.PhotoItem
 import com.example.homeassignapp.retrofit.PhotoData
 import com.example.homeassignapp.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
@@ -15,12 +15,19 @@ class SharedViewModel : ViewModel() {
 
     private val _photoData = MutableLiveData<PhotoData?>(null)
 
-    val photoList: LiveData<List<Photo>?> = Transformations.map(_photoData) { data ->
+    val photoList: LiveData<List<PhotoItem>?> = Transformations.map(_photoData) { data ->
         data?.photos?.photo
     }
 
+    private val _photoItem = MutableLiveData<PhotoItem>()
+    val photoItem: LiveData<PhotoItem> get() = _photoItem
+
     init {
         initPhotoData()
+    }
+
+    fun setPhotoItem(photo: PhotoItem) {
+        _photoItem.value = photo
     }
 
     private fun initPhotoData() {

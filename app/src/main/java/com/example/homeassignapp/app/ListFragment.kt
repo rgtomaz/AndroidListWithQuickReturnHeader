@@ -2,7 +2,6 @@ package com.example.homeassignapp.app
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,9 @@ import android.widget.AbsListView
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.example.homeassignapp.databinding.FragmentListBinding
-import com.example.homeassignapp.retrofit.Photo
+import com.example.homeassignapp.retrofit.PhotoItem
 
 class ListFragment : Fragment(), ListItemListener {
 
@@ -82,9 +82,15 @@ class ListFragment : Fragment(), ListItemListener {
         })
     }
 
-    override fun onClickPhoto(item: Photo, position: Int) {
-        Log.d("svm", position.toString())
-        Log.d("svm", item.toString())
+    private fun navToDetailsFrag() {
+        ListFragmentDirections.actionListFragmentToDetailsFragment().let { action ->
+            NavHostFragment.findNavController(this).navigate(action)
+        }
+    }
+
+    override fun onClickPhoto(item: PhotoItem, position: Int) {
+        svm.setPhotoItem(item)
+        navToDetailsFrag()
     }
 
     override fun onDestroyView() {
