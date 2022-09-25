@@ -11,23 +11,24 @@ import coil.load
 import com.example.homeassignapp.R
 import com.example.homeassignapp.retrofit.Photo
 
-class ItemAdapter(context: Context, private val list: List<Photo>) :
+class ItemAdapter(context: Context, private val list: List<Photo>, private val listener: ListItemListener) :
     ArrayAdapter<Photo>(context, R.layout.list_item, list) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var view = convertView
+        var view: View? = convertView
 
         if (view == null)
             view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
 
         view?.let {
-            val photoItem = list[position]
+            val item = list[position]
 
             val image: ImageView = view.findViewById(R.id.cardImg)
-            image.load(photoItem.getPhotoURL())
+            image.load(item.getPhotoURL())
+            image.setOnClickListener { listener.onClickPhoto(item, position) }
 
             val title: TextView = view.findViewById(R.id.cardTitle)
-            title.text = photoItem.title
+            title.text = item.title
         }
 
         return view!!
