@@ -36,7 +36,6 @@ class SharedViewModel : ViewModel() {
             }
 
             if (response.isSuccessful) response.body()?.let {
-                Log.d(TAG, response.body().toString())
                 _photoData.value = response.body()
             }
         }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HomeAssignApp</string>
     <string name="title">Title</string>
+    <string name="contDescrPhoto">content photo</string>
 </resources>

@@ -24,8 +24,9 @@ class ListFragment : Fragment() {
         val view = binding.root
 
         svm.photoList.observe(viewLifecycleOwner) { list ->
-            list?.get(0).let { photo ->
-                // binding.imgViewTest.load(photo.getPhotoURL())
+            list?.let {
+                val adapter = ItemAdapter(requireContext(), it)
+                binding.list.adapter = adapter
             }
         }
 
