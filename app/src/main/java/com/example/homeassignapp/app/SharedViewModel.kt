@@ -22,12 +22,19 @@ class SharedViewModel : ViewModel() {
     private val _photoItem = MutableLiveData<PhotoItem>()
     val photoItem: LiveData<PhotoItem> get() = _photoItem
 
+    private val _listFragTitle = MutableLiveData("Title")
+    val listFragTitle: LiveData<String> get() = _listFragTitle
+
     init {
         initPhotoData()
     }
 
     fun setPhotoItem(item: PhotoItem) {
         _photoItem.value = item
+    }
+
+    fun setListFragTitle() {
+        _listFragTitle.value = photoItem.value?.title
     }
 
     private fun initPhotoData() {

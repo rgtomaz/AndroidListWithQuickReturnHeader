@@ -28,6 +28,8 @@ class ListFragment : Fragment(), ListItemListener {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.svm = svm
+
         svm.photoList.observe(viewLifecycleOwner) { list ->
             list?.let {
                 val adapter = ItemAdapter(requireContext(), it, this@ListFragment)
