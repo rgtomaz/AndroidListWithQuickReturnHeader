@@ -2,8 +2,8 @@ package com.example.homeassignapp.app
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.homeassignapp.retrofit.PhotoItem
 import com.example.homeassignapp.retrofit.PhotoData
+import com.example.homeassignapp.retrofit.PhotoItem
 import com.example.homeassignapp.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -26,8 +26,8 @@ class SharedViewModel : ViewModel() {
         initPhotoData()
     }
 
-    fun setPhotoItem(photo: PhotoItem) {
-        _photoItem.value = photo
+    fun setPhotoItem(item: PhotoItem) {
+        _photoItem.value = item
     }
 
     private fun initPhotoData() {

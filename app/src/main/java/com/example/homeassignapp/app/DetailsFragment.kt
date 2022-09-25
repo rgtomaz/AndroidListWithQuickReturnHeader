@@ -23,6 +23,7 @@ class DetailsFragment : Fragment() {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.svm = svm
 
         return view
     }
