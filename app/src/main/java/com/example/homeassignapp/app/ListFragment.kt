@@ -1,10 +1,13 @@
 package com.example.homeassignapp.app
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.homeassignapp.databinding.FragmentListBinding
@@ -32,7 +35,32 @@ class ListFragment : Fragment(), ListItemListener {
             }
         }
 
+        binding.listHeader.attachQuickReturn(binding.list)
+
         return view
+    }
+
+    private fun View.attachQuickReturn(listView: ListView) {
+        val translationValueMin = y
+        val translationValueMax = 0F
+
+        val animatorShowView = ObjectAnimator.ofFloat(this, "translationY", translationValueMax).apply {
+            duration = 500
+        }
+
+        val animatorHideView = ObjectAnimator.ofFloat(this, "translationY", translationValueMin).apply {
+            duration = 500
+        }
+
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScroll(p0: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
+                if (!animatorShowView.isRunning) animatorShowView.start()
+
+                // TODO: check when the list is scrolling up or down and call animator accordingly
+            }
+
+            override fun onScrollStateChanged(p0: AbsListView?, p1: Int) {}
+        })
     }
 
     override fun onClickPhoto(item: Photo, position: Int) {
