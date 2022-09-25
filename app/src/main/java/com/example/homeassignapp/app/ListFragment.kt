@@ -41,22 +41,41 @@ class ListFragment : Fragment(), ListItemListener {
     }
 
     private fun View.attachQuickReturn(listView: ListView) {
-        val translationValueMin = y
-        val translationValueMax = 0F
+        val translationValMin = y
+        val translationValMax = 0F
+        val up = 1
+        val idle = 0
+        val down = -1
+        val animDuration = 300L
+        var direction = idle
+        var prevFirstVisibleItem = 0
 
-        val animatorShowView = ObjectAnimator.ofFloat(this, "translationY", translationValueMax).apply {
-            duration = 500
-        }
+        val animatorShowView = ObjectAnimator
+            .ofFloat(this, "translationY", translationValMax)
+            .apply { duration = animDuration }
 
-        val animatorHideView = ObjectAnimator.ofFloat(this, "translationY", translationValueMin).apply {
-            duration = 500
-        }
+        val animatorHideView = ObjectAnimator
+            .ofFloat(this, "translationY", translationValMin)
+            .apply { duration = animDuration }
 
         listView.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScroll(p0: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
-                if (!animatorShowView.isRunning) animatorShowView.start()
+                if (prevFirstVisibleItem < firstVisibleItem) direction = up
+                if (prevFirstVisibleItem == firstVisibleItem) direction = idle
+                if (prevFirstVisibleItem > firstVisibleItem) direction = down
 
-                // TODO: check when the list is scrolling up or down and call animator accordingly
+                when (direction) {
+                    up -> {
+                        if (y != translationValMin && !animatorHideView.isRunning)
+                            animatorHideView.start()
+                    }
+                    idle -> {}
+                    down -> {
+                        if (y != translationValMax && !animatorShowView.isRunning && firstVisibleItem > 0)
+                            animatorShowView.start()
+                    }
+                }
+                prevFirstVisibleItem = firstVisibleItem
             }
 
             override fun onScrollStateChanged(p0: AbsListView?, p1: Int) {}
