@@ -1,4 +1,4 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import coil.load
 import com.example.homeassignapp.R
+import com.example.homeassignapp.appgenerals.ListItemListener
 import com.example.homeassignapp.retrofit.PhotoItem
 
 class ItemAdapter(context: Context, private val list: List<PhotoItem>, private val listener: ListItemListener) :

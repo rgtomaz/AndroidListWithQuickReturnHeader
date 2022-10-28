@@ -1,4 +1,4 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.fragments
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
@@ -10,8 +10,11 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.example.homeassignapp.adapters.ItemAdapter
+import com.example.homeassignapp.appgenerals.ListItemListener
 import com.example.homeassignapp.databinding.FragmentListBinding
 import com.example.homeassignapp.retrofit.PhotoItem
+import com.example.homeassignapp.viewmodels.SharedViewModel
 
 class ListFragment : Fragment(), ListItemListener {
 

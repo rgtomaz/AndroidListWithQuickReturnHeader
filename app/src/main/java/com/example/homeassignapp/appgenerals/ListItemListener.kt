@@ -1,4 +1,4 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.appgenerals
 
 import com.example.homeassignapp.retrofit.PhotoItem
 

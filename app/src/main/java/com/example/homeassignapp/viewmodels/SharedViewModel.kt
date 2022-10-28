@@ -1,4 +1,4 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.*
@@ -49,8 +49,8 @@ class SharedViewModel : ViewModel() {
                 return@launch
             }
 
-            if (response.isSuccessful) response.body()?.let {
-                _photoData.value = response.body()
+            if (response.isSuccessful) response.body()?.let { body ->
+                _photoData.value = body
             }
         }
     }

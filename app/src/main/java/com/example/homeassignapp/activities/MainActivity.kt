@@ -1,9 +1,11 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.homeassignapp.R
+import com.example.homeassignapp.viewmodels.SharedViewModel
+
 
 class MainActivity : AppCompatActivity() {
 

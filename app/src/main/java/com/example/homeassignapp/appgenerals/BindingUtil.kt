@@ -1,4 +1,4 @@
-package com.example.homeassignapp.app
+package com.example.homeassignapp.appgenerals
 
 import android.widget.ImageView
 import android.widget.TextView
