@@ -10,7 +10,7 @@ import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
-import com.example.homeassignapp.adapters.ItemAdapter
+import com.example.homeassignapp.adapters.ListAdapter
 import com.example.homeassignapp.appgenerals.ListItemListener
 import com.example.homeassignapp.databinding.FragmentListBinding
 import com.example.homeassignapp.retrofit.PhotoItem
@@ -35,7 +35,7 @@ class ListFragment : Fragment(), ListItemListener {
 
         svm.photoList.observe(viewLifecycleOwner) { list ->
             list?.let {
-                val adapter = ItemAdapter(requireContext(), it, this@ListFragment)
+                val adapter = ListAdapter(requireContext(), it, this@ListFragment)
                 binding.list.adapter = adapter
             }
         }

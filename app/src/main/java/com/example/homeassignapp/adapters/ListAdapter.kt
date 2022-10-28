@@ -12,7 +12,7 @@ import com.example.homeassignapp.R
 import com.example.homeassignapp.appgenerals.ListItemListener
 import com.example.homeassignapp.retrofit.PhotoItem
 
-class ItemAdapter(context: Context, private val list: List<PhotoItem>, private val listener: ListItemListener) :
+class ListAdapter(context: Context, private val list: List<PhotoItem>, private val listener: ListItemListener) :
     ArrayAdapter<PhotoItem>(context, R.layout.list_item, list) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
