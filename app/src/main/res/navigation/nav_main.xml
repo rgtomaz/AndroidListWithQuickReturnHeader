@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/initFragment">
 
     <fragment
         android:id="@+id/listFragment"
@@ -23,4 +23,21 @@
             android:id="@+id/action_detailsFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/initFragment"
+        android:name="com.example.homeassignapp.fragments.InitFragment"
+        android:label="fragment_init"
+        tools:layout="@layout/fragment_init" >
+        <action
+            android:id="@+id/action_initFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_initFragment_to_recViewFragment"
+            app:destination="@id/recViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recViewFragment"
+        android:name="com.example.homeassignapp.fragments.RecViewFragment"
+        android:label="fragment_rec_view"
+        tools:layout="@layout/fragment_rec_view" />
 </navigation>
