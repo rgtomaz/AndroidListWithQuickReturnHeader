@@ -13,26 +13,23 @@ import com.example.homeassignapp.retrofit.PhotoItem
 class RecViewAdapter(private val list: List<PhotoItem>) : RecyclerView.Adapter<RecViewAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView
-        val textView: TextView
+        private val imageView: ImageView by lazy { itemView.findViewById(R.id.rvCardImg) }
+        private val textView: TextView by lazy { itemView.findViewById(R.id.rvCardTitle) }
 
-        init {
-            imageView = itemView.findViewById(R.id.rvCardImg)
-            textView = itemView.findViewById(R.id.rvCardTitle)
+        fun bind(item: PhotoItem) {
+            textView.text = item.title
+            imageView.load(item.getPhotoURL())
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
-
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-
-        holder.textView.text = item.title
-        holder.imageView.load(item.getPhotoURL())
+        holder.bind(item)
     }
 
     override fun getItemCount() = list.size
